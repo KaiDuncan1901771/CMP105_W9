@@ -17,20 +17,32 @@ Level::~Level()
 // handle user input
 void Level::handleInput(float dt)
 {
+	if (input->isKeyDown(sf::Keyboard::Space))
+	{
+		manager.spawn();
+		input->setKeyUp(sf::Keyboard::Space);
+	}
 
+	if (input->isKeyDown(sf::Keyboard::W))
+	{
+		manager2.spawn();
+		input->setKeyUp(sf::Keyboard::W);
+	}
 }
 
 // Update game objects
 void Level::update(float dt)
 {
-	
+	manager.update(dt);
+	manager2.update(dt);
 }
 
 // Render level
 void Level::render()
 {
 	beginDraw();
-
+	manager.render(window);
+	manager2.render(window);
 	endDraw();
 }
 
